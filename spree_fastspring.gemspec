@@ -14,4 +14,8 @@ Gem::Specification.new do |gem|
   gem.name          = "spree_fastspring"
   gem.require_paths = ["lib"]
   gem.version       = SpreeFastspring::VERSION
+  
+  if File.exists?('UPGRADING')
+    gem.post_install_message = File.read("INSTALL")
+  end
 end
