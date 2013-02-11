@@ -62,6 +62,7 @@ class PaymentMethod::Fastspring < Spree::PaymentMethod
   end
       
   def self.get_order(order_ref)
+    set_auth
     url = orders_url(order_ref)
     puts "Sending to #{url}"
     options = { :basic_auth => @auth }

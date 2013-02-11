@@ -10,15 +10,33 @@ module Spree
       return false if !params[:OrderID]
       return false if !params[:OrderReferrer]
       order = Spree::Order.find(params[:OrderReferrer])
-      resp = PaymentMethod::FastSpring.get_order(params[:OrderID])
+      user = User.find_by_email(params[:CustomerEmail])
+      resp = ::PaymentMethod::Fastspring.get_order(params[:OrderID])
       if resp.status == "accepted" || resp.status == "completed"
         logger.debug("Accepted")
         order.update_attributes({
-          state: "Completed",
-          completed_at: Time.now,
-          payment_state: "Completed",
-          special_instructions: resp.reference
+          special_instructions: resp.reference,
+          user_id: (user.id rescue nil)
         })
+        EcommerceApi.process_purchase(order)
+        order.line_items.each do |li|
+          Spree::Adjustment.create({
+            source_id: li.id,
+            amount: (li.price * -1),
+            label: "Paid via FastSpring: #{resp.reference}",
+            adjustable_id: li.id,
+            adjustable_type: "Spree::LineItem",
+            payment_state: "completed"
+          })
+          
+        order.state_changes.create({
+          :previous_state => 'cart',
+          :next_state     => 'complete',
+          :name           => 'order' ,
+          :user_id        => order.user_id
+        }, :without_protection => true)
+        end
+        
         render :text => "Done" and return
       else
         render :text => "Bad" and return
