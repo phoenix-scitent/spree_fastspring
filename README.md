@@ -1,6 +1,6 @@
 # SpreeFastspring
 
-TODO: Write a gem description
+Allows for Fastspring integration into Spree for international purchases
 
 ## Installation
 
