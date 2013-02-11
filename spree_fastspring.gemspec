@@ -15,7 +15,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = SpreeFastspring::VERSION
   
-  if File.exists?('UPGRADING')
+  if File.exists?('INSTALL')
     gem.post_install_message = File.read("INSTALL")
   end
 end
