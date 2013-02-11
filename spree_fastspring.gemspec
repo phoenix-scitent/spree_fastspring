@@ -3,9 +3,9 @@ require File.expand_path('../lib/spree_fastspring/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Kevin Hopkins"]
-  gem.email         = ["kevin@wearefound.com"]
-  gem.description   = %q{TODO: Write a gem description}
-  gem.summary       = %q{TODO: Write a gem summary}
+  gem.email         = ["khopkins218@gmail.com"]
+  gem.description   = %q{Fastspring integration for Spree}
+  gem.summary       = %q{Allows for fastspring integration into Spree for international purchases}
   gem.homepage      = ""
 
   gem.files         = `git ls-files`.split($\)
