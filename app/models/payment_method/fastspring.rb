@@ -64,10 +64,8 @@ class PaymentMethod::Fastspring < Spree::PaymentMethod
   def self.get_order(order_ref)
     set_auth
     url = orders_url(order_ref)
-    puts "Sending to #{url}"
     options = { :basic_auth => @auth }
     response = HTTParty.get(url, options)
-    puts "Response: #{response.inspect}"
     if response.code == 200
       order = parse_order(response.parsed_response.fetch('order'))
     else

@@ -13,7 +13,6 @@ module Spree
       user = User.find_by_email(params[:CustomerEmail])
       resp = ::PaymentMethod::Fastspring.get_order(params[:OrderID])
       if resp.status == "accepted" || resp.status == "completed"
-        logger.debug("Accepted")
         order.update_attributes({
           special_instructions: resp.reference,
           user_id: (user.id rescue nil)
