@@ -22,9 +22,9 @@ the PaymentMethod::Fastspring configurable should be directly available in spree
 
 Also, be sure in your user model (where current_user reads from) to add an "should_checkout_with_fastspring?" logic block like follows:
 
-  def should_checkout_with_fastspring?
-  	return true
-  end
+    def should_checkout_with_fastspring?
+    	return true
+    end
 
 In order for fastspring to actually work, youll need to create spree products, and assign the SKU of those products to
 be identical to the product_ref from FastSpring
