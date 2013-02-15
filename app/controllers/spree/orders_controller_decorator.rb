@@ -1,9 +1,9 @@
 module Spree
   OrdersController.class_eval do
-    before_filter :check_for_international, only: :edit
+    before_filter :allow_fastspring, only: :edit
     
-    def check_for_international
-      @international = true if current_user && current_user.is_international?
+    def allow_fastspring
+      @use_fastspring = true if current_user && current_user.should_checkout_with_fastspring?
     end
     
     def fastspring_complete

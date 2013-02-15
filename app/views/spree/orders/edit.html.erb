@@ -10,7 +10,7 @@
 
 <% else %>
   <div data-hook="outside_cart_form">
-    <%= form_for @order, :url => (@international ? PaymentMethod::Fastspring.product_add_url : update_cart_path), :html => {:id => 'update-cart'} do |order_form| %>
+    <%= form_for @order, :url => (@use_fastspring ? PaymentMethod::Fastspring.product_add_url : update_cart_path), :html => {:id => 'update-cart'} do |order_form| %>
       <div data-hook="inside_cart_form">
 
         <div data-hook="cart_items">
@@ -25,7 +25,7 @@
 					<%= button_tag :class => 'primary', :id => 'update-button' do %>
             <%= t(:update) %>
           <% end %>
-					<% if @international %>
+					<% if @use_fastspring %>
 							<input type="hidden" name="operation" value="create"/>
 							<input type="hidden" name="destination" value="contents"/>
 							<input type="hidden" name="mode" value="test" />
