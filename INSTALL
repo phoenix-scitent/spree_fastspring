@@ -9,9 +9,9 @@ The PaymentMethod::Fastspring configurable should be directly available in spree
 
 Be sure to set up your gateway.
 
-In your user model (where current_user reads from), add an "is_international?" method like follows:
+In your user model (where current_user reads from), add an "should_checkout_with_fastspring?" method like follows:
 
-def is_international?
+def should_checkout_with_fastspring?
 	return true
 end
 
