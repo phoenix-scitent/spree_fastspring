@@ -3,7 +3,7 @@ module Spree
     before_filter :allow_fastspring, only: :edit
     
     def allow_fastspring
-      @use_fastspring = true if current_user && current_user.should_checkout_with_fastspring?
+      @use_fastspring = current_user && current_user.should_checkout_with_fastspring?
     end
     
     def fastspring_complete
