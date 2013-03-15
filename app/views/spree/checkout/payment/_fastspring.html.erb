@@ -1,0 +1,9 @@
+<div id="fastspring-payment-form">
+<script>
+  $(document).ready(function(){
+    var meth = $('#fastspring-payment-form').parent().parent().attr("id")
+    $('#payment #order_payments_attributes__payment_method_id_' + meth.split('_')[2]).parent().parent().remove();
+    $('#fastspring-payment-form').parent().parent().remove();
+  });
+</script>
+</div>
